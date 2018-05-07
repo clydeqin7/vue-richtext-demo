@@ -3,13 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 
-import '../static/UE/ueditor.config.js'
-import '../static/UE/ueditor.all.min.js'
-import '../static/UE/lang/zh-cn/zh-cn.js'
-import '../static/UE/ueditor.parse.min.js'
+import VueQuillEditor from 'vue-quill-editor'
 
-import SSKindEditor from 'ss-kindeditor'
-Vue.use(SSKindEditor)
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+Vue.use(VueQuillEditor, /* { default global options } */)
 
 
 Vue.config.productionTip = false

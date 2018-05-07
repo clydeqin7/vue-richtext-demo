@@ -1,9 +1,14 @@
 <template>
   <div class="components-container">
-    <div class="info">UE编辑器示例<br>需要使用编辑器时，调用UE公共组件即可。可设置填充内容defaultMsg，配置信息config(宽度和高度等)，可调用组件中获取内容的方法。</div>
-    <div class="editor-container">
-      <UE :defaultMsg=defaultMsg :config=config ref="ue"></UE>
-    </div>
+    <!-- bidirectional data binding（双向数据绑定） -->
+    <quill-editor v-model="content"
+                  ref="myQuillEditor"
+                  :options="editorOption"
+                  @blur="onEditorBlur($event)"
+                  @focus="onEditorFocus($event)"
+                  @ready="onEditorReady($event)">
+    </quill-editor>
+
     <div>
       <button @click="showUEmessage">保存为word到本地</button>
     </div>
@@ -27,14 +32,13 @@
         }
       }
     },
-    methods: {
-      showUEmessage () {
-        let content = this.$refs.ue.getUEContentTxt()
-        console.log(content)
-        let uriContent = "data:application/octet-stream," + encodeURIComponent(content);
-        console.dir(uriContent)
-        window.open(uriContent, 'neuesDokument');
-      },
+    computed: {
+      editor() {
+        return this.$refs.myQuillEditor.quill
+      }
+    },
+    mounted() {
+      console.log('this is current quill instance object', this.editor)
     }
   };
 </script>

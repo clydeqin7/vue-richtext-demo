@@ -12,7 +12,8 @@
   "dependencies": {
     "ajv": "^6.4.0",
     "ss-kindeditor": "^1.0.2",
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "vue-quill-editor": "^3.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
