@@ -33,7 +33,7 @@
         console.log(content)
         let uriContent = "data:application/octet-stream," + encodeURIComponent(content);
         console.dir(uriContent)
-        window.open(uriContent, 'neuesDokument');
+        window.open(uriContent, 'xdsssd');
       },
     }
   };
