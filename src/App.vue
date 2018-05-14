@@ -6,12 +6,13 @@
     </div>
     <div>
       <button @click="showUEmessage">保存为word到本地</button>
+      <div id="word-container" ref='cvs'></div>
     </div>
   </div>
 </template>
 
 <script>
-  import UE from '@/components/UE';
+  import UE from '@/components/UE'
   export default {
     components: {UE},
     data() {
@@ -29,12 +30,17 @@
     },
     methods: {
       showUEmessage () {
-        let content = this.$refs.ue.getUEContentTxt()
-        console.log(content)
-        let uriContent = "data:application/octet-stream," + encodeURIComponent(content);
-        console.dir(uriContent)
-        window.open(uriContent, 'xdsssd');
+        let content = this.$refs.ue.getUEContent()
       },
+      downloadFile(fileName, content){
+        var aLink = document.createElement('a');
+        var blob = new Blob([content]);
+        var evt = document.createEvent("HTMLEvents");
+        evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+        aLink.download = fileName;
+        aLink.href = URL.createObjectURL(blob);
+        aLink.dispatchEvent(evt);
+      }
     }
   };
 </script>
